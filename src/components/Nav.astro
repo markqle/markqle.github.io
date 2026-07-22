@@ -1,7 +1,7 @@
 ---
 import { site, nav } from '../data/site';
 import ThemeToggle from './ThemeToggle.astro';
-const path = Astro.url.pathname;
+const path = Astro.url.pathname.replace(/(.)\/$/, '$1');
 ---
 <header class="wrap site-header">
   <a href="/" class="brand ui">{site.name}</a>

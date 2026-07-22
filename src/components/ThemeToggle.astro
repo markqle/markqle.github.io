@@ -1,6 +1,6 @@
 ---
 ---
-<button id="theme-toggle" class="ui" type="button" aria-label="Toggle color theme">◐</button>
+<button id="theme-toggle" class="ui" type="button" aria-label="Toggle color theme" aria-pressed="false">◐</button>
 <style>
   #theme-toggle {
     background: none; border: 1px solid var(--rule); border-radius: 6px;
@@ -10,17 +10,23 @@
 </style>
 <script is:inline>
   (function () {
-    const KEY = 'theme';
-    const root = document.documentElement;
-    const stored = localStorage.getItem(KEY);
-    if (stored === 'light' || stored === 'dark') root.setAttribute('data-theme', stored);
-    const btn = document.getElementById('theme-toggle');
-    btn?.addEventListener('click', function () {
-      const isDark = getComputedStyle(root).getPropertyValue('--bg').trim() === '#16161a'
-        || root.getAttribute('data-theme') === 'dark';
-      const next = isDark ? 'light' : 'dark';
+    var KEY = 'theme';
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function current() {
+      var dt = root.getAttribute('data-theme');
+      if (dt === 'light' || dt === 'dark') return dt;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    function sync() {
+      if (btn) btn.setAttribute('aria-pressed', current() === 'dark' ? 'true' : 'false');
+    }
+    sync();
+    btn && btn.addEventListener('click', function () {
+      var next = current() === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
-      localStorage.setItem(KEY, next);
+      try { localStorage.setItem(KEY, next); } catch (e) {}
+      sync();
     });
   })();
 </script>
