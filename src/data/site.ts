@@ -1,10 +1,10 @@
 export const site = {
-  name: 'Mark Le', // TODO(mark): confirm display name
+  name: 'Mark Le',
   title: 'Mark Le — Portfolio',
-  description: 'Portfolio and blog of Mark Le.', // TODO(mark): refine tagline
-  email: 'mark@belamourllc.com',
+  description: 'Software & data engineer with a growing focus on robotics, machine learning, and computer vision.', // TODO(mark): refine tagline
+  email: 'mark.mqle@gmail.com',
   github: 'https://github.com/markqle',
-  linkedin: 'https://www.linkedin.com/in/markqle', // TODO(mark): confirm URL
+  linkedin: 'https://www.linkedin.com/in/minh-le-mark/',
 } as const;
 
 export const nav = [

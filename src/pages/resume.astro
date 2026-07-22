@@ -1,16 +1,96 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
 ---
-<BaseLayout title="Resume — Mark Le" description="Resume of Mark Le.">
-  <section class="prose">
+<BaseLayout title="Resume — Mark Le" description="Resume of Mark Le — Data & Software Engineer.">
+  <section class="prose resume">
     <h1>Resume</h1>
     <p><a href="/resume.pdf">Download PDF</a></p>
-    <!-- TODO(mark): fill in real resume content, or rely on the PDF above -->
+    <p class="muted contact">
+      <a href={`mailto:${site.email}`}>{site.email}</a> ·
+      <a href="tel:+16573393225">657-339-3225</a> ·
+      <a href={site.linkedin}>LinkedIn</a>
+    </p>
+
+    <p>
+      Data &amp; Software Engineer with 3+ years delivering AI/ML solutions and
+      SQL/Python pipelines on AWS, Azure, and GCP. Proficient with
+      PyTorch/TensorFlow, LLMs, GNNs, and time-series forecasting — with
+      outcomes including 99%+ data accuracy and 25% faster decisions. I turn
+      ambiguous business problems into production-ready results.
+    </p>
+
     <h2>Experience</h2>
-    <p class="muted">Placeholder — add roles, dates, and highlights.</p>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="role">Data Engineer, Student Assistant — WorkAbility IV</span>
+        <span class="muted dates">Feb 2025 – Mar 2026</span>
+      </div>
+      <p class="muted place">Part-time · Long Beach, CA</p>
+      <ul>
+        <li>Delivered an end-to-end migration of 20K+ legacy MS Access records to an on-prem Microsoft SQL Server; designed the ERD and centralized schema, eliminating redundancy and boosting counselor productivity by ~50%.</li>
+        <li>Built a full-stack case-management platform in Django, letting counselors capture case notes and streamline daily workflows; deployed to an on-prem Windows Server via IIS.</li>
+        <li>Managed the Career Development Center SQL database of 20,000 student records, maintaining 99% data accuracy.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="role">Data Engineer, Analytics — GeoComply Solutions Inc.</span>
+        <span class="muted dates">Feb 2023 – Aug 2024</span>
+      </div>
+      <p class="muted place">Full-time · Vancouver, Canada</p>
+      <ul>
+        <li>Built Requests-per-Second and weekly API-capture metrics in Python and Airflow to trigger throttle-control alerts above 1M requests/hour, reducing human error in system checks and accelerating daily operations by 15%.</li>
+        <li>Developed Python data pipelines integrating Kibana and Elasticsearch with internal databases to enrich 3M data points, boosting GeoGuard database performance by 40%.</li>
+        <li>Ran large-scale ad-hoc fraud-detection investigations over 100M+ records on Databricks for upper management and customer inquiries.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="role">Data Analyst — LiteFinance</span>
+        <span class="muted dates">Sep 2021 – Dec 2022</span>
+      </div>
+      <p class="muted place">Full-time · Vancouver, Canada</p>
+      <ul>
+        <li>Built interactive Power BI dashboards for market research and concept testing in the North American market, driving a 25% increase in actionable insights and decision-making efficiency.</li>
+        <li>Cleaned third-party partner data and analyzed 500,000 data points in Python.</li>
+        <li>Conducted statistical analysis and ad-hoc reporting with Python and Power BI (DAX); supported data modeling, ERDs, and UML.</li>
+      </ul>
+    </div>
+
     <h2>Skills</h2>
-    <p class="muted">Placeholder — list core skills and tools.</p>
+    <ul class="skills">
+      <li><strong>Languages &amp; Libraries:</strong> Python (PyTorch, Pandas, NumPy, Scikit-learn, TensorFlow), SQL, C++, JavaScript, R</li>
+      <li><strong>Big Data &amp; Cloud:</strong> Spark, Hadoop, Kafka, AWS (S3, SageMaker, Kinesis), GCP (Pub/Sub, BigQuery), Azure, Snowflake</li>
+      <li><strong>MLOps &amp; Analytics:</strong> Git, Docker, Kubernetes, Jenkins, MLflow, Kubeflow, Hyperopt, FastAPI, Power BI, Tableau</li>
+    </ul>
+
     <h2>Education</h2>
-    <p class="muted">Placeholder — add education.</p>
+    <ul class="edu">
+      <li><strong>M.S. in Information Systems (Data Science)</strong> — CSU Long Beach <span class="muted">· Expected May 2026</span></li>
+      <li><strong>B.A. in Economics</strong> — University of British Columbia <span class="muted">· 2017 – 2021</span></li>
+      <li><strong>AWS Certified Cloud Practitioner</strong> — Amazon Web Services <span class="muted">· June 2025</span></li>
+    </ul>
+
+    <h2>Awards &amp; Volunteer</h2>
+    <ul class="edu">
+      <li>CSU ChatGPT Ambassador, OpenAI — Long Beach, CA <span class="muted">· Sep – Dec 2025</span></li>
+      <li>3rd place — Think-a-thon Case Competition (45 teams), Skyworks <span class="muted">· Aug 2025</span></li>
+      <li>3rd place — Alteryx Southern California Datathon (100 participants) <span class="muted">· Oct 2024</span></li>
+    </ul>
   </section>
 </BaseLayout>
+<style>
+  .entry { margin-block: var(--space-3); }
+  .entry-head { display: flex; flex-wrap: wrap; gap: 0.25rem var(--space-2);
+    align-items: baseline; justify-content: space-between; }
+  .role { font-family: var(--font-sans); font-weight: 650; }
+  .dates { font-size: 0.9rem; white-space: nowrap; }
+  .place { margin: 0.1rem 0 0.4rem; font-size: 0.9rem; }
+  .resume ul { margin-top: 0.35rem; }
+  .resume li { margin-block: 0.35rem; }
+  .skills li, .edu li { margin-block: 0.5rem; }
+</style>
