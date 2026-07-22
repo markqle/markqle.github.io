@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects'))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+<BaseLayout title="Projects — Mark Le" description="Selected projects and work.">
+  <section>
+    <h1>Projects</h1>
+    <!-- TODO(mark): curate which projects appear; edit files in src/content/projects/ -->
+    {projects.map((p) => (
+      <ProjectCard
+        title={p.data.title}
+        description={p.data.description}
+        tech={p.data.tech}
+        repo={p.data.repo}
+        demo={p.data.demo}
+      />
+    ))}
+  </section>
+</BaseLayout>

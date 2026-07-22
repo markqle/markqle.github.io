@@ -1,0 +1,23 @@
+---
+interface Props { title: string; description: string; tech: string[]; repo?: string; demo?: string; }
+const { title, description, tech, repo, demo } = Astro.props;
+---
+<article class="card">
+  <h2>{title}</h2>
+  <p>{description}</p>
+  {tech.length > 0 && (
+    <ul class="tech ui">{tech.map((t) => <li>{t}</li>)}</ul>
+  )}
+  <p class="links ui">
+    {repo && <a href={repo}>Code</a>}
+    {demo && <a href={demo}>Demo</a>}
+  </p>
+</article>
+<style>
+  .card { padding-block: var(--space-3); border-bottom: 1px solid var(--rule); }
+  .card h2 { margin: 0 0 var(--space-1); font-size: 1.3rem; }
+  .card p { margin: 0 0 var(--space-1); }
+  .tech { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; padding: 0; margin: var(--space-1) 0; }
+  .tech li { font-size: 0.8rem; color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: 0.1rem 0.6rem; }
+  .links { display: flex; gap: var(--space-2); font-size: 0.95rem; }
+</style>
