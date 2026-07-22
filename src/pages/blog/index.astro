@@ -6,21 +6,30 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 <BaseLayout title="Blog — Mark Le" description="Writing on projects and technical topics.">
-  <section>
+  <section class="prose">
     <h1>Blog</h1>
-    <ul class="post-list">
-      {posts.map((post) => (
-        <li>
-          <a class="title" href={`/blog/${post.id}`}>{post.data.title}</a>
-          <p class="muted meta">
-            <time datetime={post.data.date.toISOString()}>
-              {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-            </time>
-            — {post.data.description}
-          </p>
-        </li>
-      ))}
-    </ul>
+    {posts.length === 0 ? (
+      <div class="coming-soon">
+        <p class="big">Coming soon <span aria-hidden="true">☕</span></p>
+        <p class="muted">
+          I'm heads-down building things right now, but thoughtful write-ups on
+          my projects are on the way. Grab a coffee and check back soon.
+        </p>
+      </div>
+    ) : (
+      <ul class="post-list">
+        {posts.map((post) => (
+          <li>
+            <a class="title" href={`/blog/${post.id}`}>{post.data.title}</a>
+            <p class="muted meta">
+              <time datetime={post.data.date.toISOString()}>
+                {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+              </time>, {post.data.description}
+            </p>
+          </li>
+        ))}
+      </ul>
+    )}
   </section>
 </BaseLayout>
 <style>
@@ -29,4 +38,6 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .title { font-family: var(--font-sans); font-weight: 650; font-size: 1.15rem; text-decoration: none; color: var(--fg); }
   .title:hover { color: var(--accent); }
   .meta { margin: 0.25rem 0 0; font-size: 0.95rem; }
+  .coming-soon { margin-top: var(--space-3); }
+  .coming-soon .big { font-family: var(--font-sans); font-weight: 650; font-size: 1.3rem; margin-bottom: var(--space-1); }
 </style>

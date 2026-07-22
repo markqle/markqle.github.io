@@ -2,7 +2,7 @@
 title: 'Hello, world'
 date: 2026-07-22
 description: 'A first post — why this blog exists and what I plan to write about.'
-draft: false
+draft: true
 ---
 
 <!-- TODO(mark): replace this sample post with your own writing -->
