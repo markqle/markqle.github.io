@@ -16,7 +16,7 @@
     function current() {
       var dt = root.getAttribute('data-theme');
       if (dt === 'light' || dt === 'dark') return dt;
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      return 'light'; // default to light unless the visitor has toggled dark
     }
     function sync() {
       if (btn) btn.setAttribute('aria-pressed', current() === 'dark' ? 'true' : 'false');

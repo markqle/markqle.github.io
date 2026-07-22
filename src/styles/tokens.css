@@ -19,6 +19,7 @@
   --accent-fg: #ffffff;
 }
 
+/* Light is the default. Dark applies only when the visitor toggles it. */
 :root[data-theme='dark'] {
   --bg: #16161a;
   --fg: #e9e8e4;
@@ -26,15 +27,4 @@
   --rule: #2c2c31;
   --accent: #c8a97e;
   --accent-fg: #16161a;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --bg: #16161a;
-    --fg: #e9e8e4;
-    --muted: #9a9a94;
-    --rule: #2c2c31;
-    --accent: #c8a97e;
-    --accent-fg: #16161a;
-  }
 }
