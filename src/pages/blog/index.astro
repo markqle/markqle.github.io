@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<BaseLayout title="Blog — Mark Le" description="Writing on projects and technical topics.">
+  <section>
+    <h1>Blog</h1>
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li>
+          <a class="title" href={`/blog/${post.id}`}>{post.data.title}</a>
+          <p class="muted meta">
+            <time datetime={post.data.date.toISOString()}>
+              {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+            </time>
+            — {post.data.description}
+          </p>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>
+<style>
+  .post-list { list-style: none; padding: 0; }
+  .post-list li { padding-block: var(--space-2); border-bottom: 1px solid var(--rule); }
+  .title { font-family: var(--font-sans); font-weight: 650; font-size: 1.15rem; text-decoration: none; color: var(--fg); }
+  .title:hover { color: var(--accent); }
+  .meta { margin: 0.25rem 0 0; font-size: 0.95rem; }
+</style>
