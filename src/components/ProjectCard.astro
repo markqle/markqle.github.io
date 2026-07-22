@@ -1,6 +1,12 @@
 ---
-interface Props { title: string; description: string; tech: string[]; repo?: string; demo?: string; }
-const { title, description, tech, repo, demo } = Astro.props;
+interface LinkItem { label: string; url: string; }
+interface Props { title: string; description: string; tech: string[]; repo?: string; demo?: string; links?: LinkItem[]; }
+const { title, description, tech, repo, demo, links = [] } = Astro.props;
+const allLinks: LinkItem[] = [
+  ...(repo ? [{ label: 'Code', url: repo }] : []),
+  ...(demo ? [{ label: 'Demo', url: demo }] : []),
+  ...links,
+];
 ---
 <article class="card">
   <h2>{title}</h2>
@@ -8,10 +14,11 @@ const { title, description, tech, repo, demo } = Astro.props;
   {tech.length > 0 && (
     <ul class="tech ui">{tech.map((t) => <li>{t}</li>)}</ul>
   )}
-  <p class="links ui">
-    {repo && <a href={repo}>Code</a>}
-    {demo && <a href={demo}>Demo</a>}
-  </p>
+  {allLinks.length > 0 && (
+    <p class="links ui">
+      {allLinks.map((l) => <a href={l.url}>{l.label}</a>)}
+    </p>
+  )}
 </article>
 <style>
   .card { padding-block: var(--space-3); border-bottom: 1px solid var(--rule); }
