@@ -1,0 +1,26 @@
+---
+---
+<button id="theme-toggle" class="ui" type="button" aria-label="Toggle color theme">◐</button>
+<style>
+  #theme-toggle {
+    background: none; border: 1px solid var(--rule); border-radius: 6px;
+    color: var(--fg); cursor: pointer; font-size: 1rem; line-height: 1;
+    padding: 0.35rem 0.5rem;
+  }
+</style>
+<script is:inline>
+  (function () {
+    const KEY = 'theme';
+    const root = document.documentElement;
+    const stored = localStorage.getItem(KEY);
+    if (stored === 'light' || stored === 'dark') root.setAttribute('data-theme', stored);
+    const btn = document.getElementById('theme-toggle');
+    btn?.addEventListener('click', function () {
+      const isDark = getComputedStyle(root).getPropertyValue('--bg').trim() === '#16161a'
+        || root.getAttribute('data-theme') === 'dark';
+      const next = isDark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem(KEY, next);
+    });
+  })();
+</script>

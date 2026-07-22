@@ -1,0 +1,22 @@
+---
+import { site, nav } from '../data/site';
+import ThemeToggle from './ThemeToggle.astro';
+const path = Astro.url.pathname;
+---
+<header class="wrap site-header">
+  <a href="/" class="brand ui">{site.name}</a>
+  <nav class="ui" aria-label="Primary">
+    {nav.map((item) => (
+      <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>{item.label}</a>
+    ))}
+    <ThemeToggle />
+  </nav>
+</header>
+<style>
+  .site-header { display: flex; align-items: center; justify-content: space-between;
+    gap: var(--space-2); padding-block: var(--space-3); border-bottom: 1px solid var(--rule); }
+  .brand { font-weight: 700; text-decoration: none; color: var(--fg); }
+  nav { display: flex; align-items: center; gap: var(--space-2); font-size: 0.95rem; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover, nav a[aria-current='page'] { color: var(--fg); }
+</style>

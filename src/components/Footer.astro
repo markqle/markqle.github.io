@@ -1,0 +1,22 @@
+---
+import { site } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer class="wrap site-footer ui">
+  <div class="links">
+    <a href={`mailto:${site.email}`}>Email</a>
+    <a href={site.github}>GitHub</a>
+    <a href={site.linkedin}>LinkedIn</a>
+    <a href="/rss.xml">RSS</a>
+  </div>
+  <p class="muted">© {year} {site.name}</p>
+</footer>
+<style>
+  .site-footer { display: flex; align-items: center; justify-content: space-between;
+    gap: var(--space-2); flex-wrap: wrap; padding-block: var(--space-4);
+    margin-top: var(--space-5); border-top: 1px solid var(--rule); font-size: 0.9rem; }
+  .links { display: flex; gap: var(--space-2); }
+  .links a { color: var(--muted); text-decoration: none; }
+  .links a:hover { color: var(--fg); }
+  p { margin: 0; }
+</style>

@@ -1,0 +1,40 @@
+:root {
+  --font-serif: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, Georgia, serif;
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+
+  --measure: 65ch;
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+
+  /* light theme */
+  --bg: #fbfbf9;
+  --fg: #1a1a1a;
+  --muted: #6b6b6b;
+  --rule: #e4e2dc;
+  --accent: #7a5c3e;
+  --accent-fg: #ffffff;
+}
+
+:root[data-theme='dark'] {
+  --bg: #16161a;
+  --fg: #e9e8e4;
+  --muted: #9a9a94;
+  --rule: #2c2c31;
+  --accent: #c8a97e;
+  --accent-fg: #16161a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #16161a;
+    --fg: #e9e8e4;
+    --muted: #9a9a94;
+    --rule: #2c2c31;
+    --accent: #c8a97e;
+    --accent-fg: #16161a;
+  }
+}

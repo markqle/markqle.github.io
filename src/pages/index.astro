@@ -1,6 +1,19 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
 ---
-<html lang="en">
-  <head><meta charset="utf-8" /><title>markqle</title></head>
-  <body><h1>Scaffold OK</h1></body>
-</html>
+<BaseLayout title={site.title} description={site.description}>
+  <section class="prose">
+    <h1>{site.name}</h1>
+    <!-- TODO(mark): replace with your real intro -->
+    <p>
+      I'm a software / data engineer who builds pragmatic systems and writes
+      about what I learn. This is placeholder copy — swap it for a short intro
+      about who you are, what you work on, and what you're looking for.
+    </p>
+    <p class="muted">
+      Explore my <a href="/projects">projects</a>, read the
+      <a href="/blog">blog</a>, or view my <a href="/resume">resume</a>.
+    </p>
+  </section>
+</BaseLayout>
